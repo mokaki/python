@@ -66,8 +66,8 @@ while (count < TotalNumberOfGames): #場號=總場數=停
 						homeTeam = (sampleDict[1]['matches'][count]['homeTeam']['teamNameCH'])
 						awayTeam = (sampleDict[1]['matches'][count]['awayTeam']['teamNameCH'])
 						channelID = (sampleDict[1]['matches'][count]['channel'][0]['channelID'])
-						fp.writelines(str( matchTime111111 + homeTeam + 'VS' + awayTeam))
-						print (dayOfDM1,'/',dayOfDM,dayOfWk,matchTime111111, homeTeam,'VS',awayTeam,channelID)
+						fp.writelines(str(' '+matchTime111111+' '+homeTeam+'VS' + awayTeam))
+						print (dayOfDM1,'/',dayOfDM,dayOfWk,channelID,matchTime111111, homeTeam,'VS',awayTeam)
 						
 
 	count += 1
