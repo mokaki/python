@@ -13,7 +13,7 @@ from urllib.request import urlopen
 
 #客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用
 channel_list = ["621" , "622" , "623" , "624" , "638" , "639" , "632" , "633" , "634" , "635" , "643" , "642" , "644" , "645" , "670"]#台如有任一
-DataURL = "../date/今日直播.txt"
+DataURL = "今日直播.txt"
 #客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END
 
 today = datetime.date.today()
