@@ -1,4 +1,4 @@
-﻿#2SelePage.py
+#2SelePage.py
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
@@ -47,7 +47,7 @@ loginButton2 = Button(tkWindow, text="自動抄波", command=自動抄波).grid(
 loginButton3 = Button(tkWindow, text="自動播歌", command=自動播歌).grid(row=3, column=3)  
 
 #自定義
-loginButton4 = Button(tkWindow, text=str(name), command=aaaaaa1111111111).grid(row=4, column=4)  
+loginButton4 = Button(tkWindow, text=str(name), command=aaaaaa1111111111).grid(row=9, column=9)  
 
 tkWindow.mainloop()
 
