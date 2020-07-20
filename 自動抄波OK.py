@@ -6,25 +6,14 @@ import time
 import datetime
 import json
 from pprint import pprint
+
 import os
 import sys
 from urllib.request import urlopen
 
-
-
-#客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用
-#客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用
-#客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用
-#客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用
-#客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用
 #客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用客戶修改用
 channel_list = ["621" , "622" , "623" , "624" , "638" , "639" , "632" , "633" , "634" , "635" , "643" , "642" , "644" , "645" , "670"]#台如有任一
 DataURL = "../date/今日直播.txt"
-#客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END
-#客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END
-#客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END
-#客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END
-#客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END
 #客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END客戶修改用END
 
 today = datetime.date.today()
@@ -32,22 +21,24 @@ dayOfDM = str(today)[5:7]
 dayOfDM1 = str(today)[8:11]
 tomorrow = today + datetime.timedelta(days = 1)
 dayOfWeek = datetime.date.today().weekday()
-if dayOfWeek == 1: 
+if dayOfWeek == 0: 
     dayOfWk = '星期一'
-if dayOfWeek == 2: 
+if dayOfWeek == 1: 
     dayOfWk = '星期二'
-if dayOfWeek == 3: 
+if dayOfWeek == 2: 
     dayOfWk = '星期三'
-if dayOfWeek == 4: 
+if dayOfWeek == 3: 
     dayOfWk = '星期四'
-if dayOfWeek == 5: 
+if dayOfWeek == 4: 
     dayOfWk = '星期五'
-if dayOfWeek == 6: 
+if dayOfWeek == 5: 
     dayOfWk = '星期六'
-if dayOfWeek == 7: 
+if dayOfWeek == 6: 
     dayOfWk = '星期日'
 
 day_list = [str(today),str(tomorrow)]
+
+
 u = urlopen('https://bet.hkjc.com/football/getJSON.aspx?jsontype=odds_had.aspx')#hkcj到api網
 sampleDict = json.loads(u.read().decode('utf-8'))
 
@@ -84,4 +75,4 @@ print ('\n己完成記錄 今日直播\n請按任意鍵退出')
  
 
 
-os.system("pause")#不關
+os.system("pause")
