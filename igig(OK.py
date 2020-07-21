@@ -4,8 +4,8 @@ from instabot import Bot
   
 bot = Bot() 
   
-bot.login(username = "96170690",  
-          password = "96170690mok0405") 
+bot.login(username = "000000000",  
+          password = "0000000000111") 
   
 # Recommended to put the photo 
 # you want to upload in the same 
