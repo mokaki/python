@@ -1,3 +1,5 @@
+
+
 '''
 LoginFacebook
 #https://www.guru99.com/facebook-login-using-python.html
@@ -9,7 +11,6 @@ LoginFacebook
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
-
 
 ###############################################
 options = webdriver.ChromeOptions() 
@@ -38,11 +39,10 @@ password.send_keys("h600000password0000005")####################################
 # Step 4) Click Login
 submit.click()
 
-
 '''
 LoginFacebookEND
 '''
 
-
-
 print ('LoginFacebookEND')
+
+
