@@ -206,8 +206,8 @@ def _SeeDate():
 			data = json.load(ha0ha)
 			name_entry = data['FBacDate'][0]['FB帳號']
 			pwd_entry = data['FBacDate'][0]['FB密碼']
-			IGname_entry = data['FBacDate'][0]['IG帳號']
-			IGpwd_entry = data['FBacDate'][0]['IG密碼']
+			#IGname_entry = data['FBacDate'][0]['IG帳號']
+			#IGpwd_entry = data['FBacDate'][0]['IG密碼']
 			txt_entry = data['FBacDate'][0]['內容']
 			dateurl = 0
 	else:	
@@ -233,8 +233,8 @@ def _SeeDate():
 				else:
 					name_entry = data['FBacDate'][0]['FB帳號']
 					pwd_entry = data['FBacDate'][0]['FB密碼']
-					IGname_entry = data['FBacDate'][0]['IG帳號']
-					IGpwd_entry = data['FBacDate'][0]['IG密碼']
+					#IGname_entry = data['FBacDate'][0]['IG帳號']
+					#IGpwd_entry = data['FBacDate'][0]['IG密碼']
 					txt_entry = data['FBacDate'][0]['內容']
 					dateurl = dateurl0
 
@@ -244,8 +244,8 @@ def _look():
 	print ("\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 	print ("\nFB帳號: ",name_entry)
 	print ("\nFB密碼: ",pwd_entry)
-	print ("\nIG帳號: ",IGname_entry)
-	print ("\nIG密碼: ",IGpwd_entry)
+	#print ("\nIG帳號: ",IGname_entry)
+	#print ("\nIG密碼: ",IGpwd_entry)
 	print ("\n內容: \n",txt_entry)
 	print ("\n存檔位置: ",dateurl)
 	print ("\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
@@ -286,8 +286,8 @@ def _SaveDate():
 			{
 				'FB帳號': name_entry.get(),
 				'FB密碼': pwd_entry.get(),
-				'IG帳號': IGname_entry.get(),
-				'IG密碼': IGpwd_entry.get(),
+				#'IG帳號': IGname_entry.get(),
+				#'IG密碼': IGpwd_entry.get(),
 				'內容': txt_entry.get(1.0, END)
 			}
 		]
