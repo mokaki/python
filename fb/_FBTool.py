@@ -23,27 +23,33 @@ import json
 import time
 import requests
 import random
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
 from tkinter import *
 import tkinter as tk
 from functools import partial
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
 
 tkWindow2 = tk.Tk()
 tkWindow2.geometry('1x1')     # 设置窗口的大小
-L1 = Label(tkWindow2, text='facebook帳號email')   # 创建用户名输入框
+L1 = Label(tkWindow2, text='facebook帳號')   # 创建用户名输入框
 name_entry = tk.Entry(tkWindow2)  
-L2 = Label(tkWindow2, text='facebook密碼email')
+L2 = Label(tkWindow2, text='facebook密碼')
 pwd_entry = tk.Entry(tkWindow2, show='🐳')  # 创建密码输入框
 #L3 = Label(tkWindow2, text='IG帳號email')
 #IGname_entry = tk.Entry(tkWindow2)
 #L10 = Label(tkWindow2, text='IG密碼email')
 #IGpwd_entry = tk.Entry(tkWindow2, show='🐳')
-L4 = Label(tkWindow2, text='帖文字內容')
-txt_entry = tk.Text(tkWindow2, height=14)
+L4 = Label(tkWindow2, text='發帖文字內容')
+txt_entry = tk.Text(tkWindow2, height=10)
+L12 = Label(tkWindow2, text='推帖內容')
+UPgrp_entry = tk.Text(tkWindow2, height=4)
+L11 = Label(tkWindow2, text='推帖網址')
+grp_entry = tk.Text(tkWindow2, height=5)
 L9 = Label(tkWindow2,text='存檔位置,如..\\date\\')
 dateurl = tk.Entry(tkWindow2)  
 options = webdriver.ChromeOptions() 
@@ -53,12 +59,14 @@ options.add_experimental_option('prefs',prefs)
 # Step 1) Open Firefox 
 browser = webdriver.Chrome('../.exe/chromedriver' ,chrome_options=options)
 browser.set_window_size(480, 600)
-
 WebDriverWaitMSG = "\n!!!找不到這個網頁原素!!!\n"
 FBcode000 = str('https://www.facebook.com/')
+#點留言
 FBcode001 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[1]/div/div/div/div[4]/div[2]/div/div[2]/div[1]/div/div/div/div[1]/div/div[1]/div')
-FBcode002 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div[2]/div[2]/div[1]/div[1]/div[1]/div/div/div/div/div/div/div/div/div/span')
-FBcode003 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div[2]/div[3]/div[2]/div')
+#寫留言
+FBcode002 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div[2]/div[1]/div[1]/div[1]/div/div/div/div/div/div/div/div/div/span')
+#發留言
+FBcode003 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div[3]/div[2]/div')
 FBcode004 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[1]/div[1]/div/div/div[4]/div[2]/div/div[2]/div[3]/div/div/div/div/div/div/div/div/div/div/div[2]/div/div[4]/div/div/div[1]/div/div/div[1]/div[2]/span')
 FBcode005 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div/div[1]/div/div[4]/div[2]/div/div/span')#分群
 FBcode006 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[1]/div/div/div/div[1]/div[2]/div/div/div[2]/div/div/div[1]/div/div/div/div/span/h1')
@@ -108,6 +116,8 @@ def _FBLogin():
 	print ('\n',FBACName.text,'成功登入facebook!!')
 
 
+
+
 #OK202008012245
 #_FBPostMyWall#_FBPostMyWall#_FBPostMyWall#_FBPostMyWall#_FBPostMyWall#_FBPostMyWall
 def _FBPostMyWall():
@@ -127,14 +137,18 @@ def _FBPostMyWall():
 		_inputPost = browser.find_element_by_xpath(FBcode002)
 		_inputPost.send_keys(txt_entry)
 		#暫未可發圖T_T202008011755
-		os.system("pause")
-		sys.exit()
 		#發留言
+		element = WebDriverWait(browser, 10, 0.5).until(
+			EC.presence_of_element_located((By.XPATH,FBcode003)),WebDriverWaitMSG + FBcode003
+		)
 		submit3 = browser.find_element_by_xpath(FBcode003)
 		submit3.click()
+		print ("成功發帖,內容\n\n",txt_entry)
 	else:
 		#print ("您未登入")
 		_SeeDate(),_FBLogin(),_FBPostMyWall()
+
+
 
 
 #OK202008012245
@@ -189,6 +203,149 @@ def _FBPostGroups():
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FBcode009 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div[4]/div/div/div/div/div/div[1]/div/div/div/div/div/div/div/div/div/div/div[2]/div/div[4]/div/div/div[2]/div[5]/div[2]/div[1]/div/div/div[1]/form/div/div/div/div/div/div/div')
+FBcode010 = str('')
+FBcode011 = str('')
+
+#_FBAutoUpPost#_FBAutoUpPost#_FBAutoUpPost#_FBAutoUpPost#_FBAutoUpPost#_FBAutoUpPost#_FBAutoUpPost
+def _FBAutoUpPost():
+	print ('\nrun _FBAutoUpPost')
+	#是否已登入
+	browser.get(FBcode000+'me/')
+	time.sleep(random.uniform(3, 11))
+	get_url = browser.current_url
+	if get_url != FBcode000:
+
+
+
+
+		#_FBAutoUpPost功能
+		browser.get(FBcode000+'groups/441454859557899/permalink/1158855477817830/')
+		element = WebDriverWait(browser, 10, 0.5).until(
+			EC.presence_of_element_located((By.XPATH,FBcode009)),WebDriverWaitMSG + FBcode009
+		)
+		submit = browser.find_element_by_xpath(FBcode009)
+		submit.send_keys('河芟呂')
+		time.sleep(random.uniform(3, 11))
+		submit.send_keys(Keys.RETURN)
+
+
+
+
+
+
+
+	else:
+		#print ("您未登入")
+		_SeeDate(),_FBLogin(),_FBAutoUpPost()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #OK202008012245
 #DateFun#DateFun#DateFun#DateFun#DateFun#DateFun#DateFun#DateFun#DateFun#DateFun#DateFun#DateFun#DateFun#DateFun
 def _SeeDate():
@@ -198,6 +355,8 @@ def _SeeDate():
 	global IGname_entry
 	global IGpwd_entry
 	global txt_entry
+	global UPgrp_entry
+	global grp_entry
 	global dateurl
 
 	a0json = '0.json'
@@ -208,7 +367,9 @@ def _SeeDate():
 			pwd_entry = data['FBacDate'][0]['FB密碼']
 			#IGname_entry = data['FBacDate'][0]['IG帳號']
 			#IGpwd_entry = data['FBacDate'][0]['IG密碼']
-			txt_entry = data['FBacDate'][0]['內容']
+			txt_entry = data['FBacDate'][0]['發帖內容']
+			UPgrp_entry = data['FBacDate'][0]['推帖內容']
+			grp_entry = data['FBacDate'][0]['推帖網址']
 			dateurl = 0
 	else:	
 		name_entry0 = input('帳號文件名')
@@ -235,7 +396,9 @@ def _SeeDate():
 					pwd_entry = data['FBacDate'][0]['FB密碼']
 					#IGname_entry = data['FBacDate'][0]['IG帳號']
 					#IGpwd_entry = data['FBacDate'][0]['IG密碼']
-					txt_entry = data['FBacDate'][0]['內容']
+					txt_entry = data['FBacDate'][0]['發帖內容']
+					UPgrp_entry = data['FBacDate'][0]['推帖內容']
+					grp_entry = data['FBacDate'][0]['推帖網址']
 					dateurl = dateurl0
 
 
@@ -246,9 +409,21 @@ def _look():
 	print ("\nFB密碼: ",pwd_entry)
 	#print ("\nIG帳號: ",IGname_entry)
 	#print ("\nIG密碼: ",IGpwd_entry)
-	print ("\n內容: \n",txt_entry)
+	print ("\n發帖內容: \n",txt_entry)
+	print ("\n推帖內容: \n",UPgrp_entry)
+	print ("\n推帖網址: \n",grp_entry)
 	print ("\n存檔位置: ",dateurl)
 	print ("\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -256,7 +431,7 @@ def _look():
 def _ChangeDate():
 	print ('\nrun _ChangeDate')
 	tkWindow2.title('創新帳號')     # 设置窗口的标题
-	tkWindow2.geometry('300x370')     # 设置窗口的大小
+	tkWindow2.geometry('300x530')     # 设置窗口的大小
 	L1.pack(padx=(0),pady=(0))
 	name_entry.pack(padx=(0),pady=(0),ipadx=(60))
 	L2.pack(padx=(0),pady=(0))
@@ -269,9 +444,20 @@ def _ChangeDate():
 
 	L4.pack(padx=(0),pady=(0))
 	txt_entry.pack(padx=(7),pady=(5))
+
+
+
+	L12.pack(padx=(0),pady=(0))
+	UPgrp_entry.pack(padx=(7),pady=(5))
+
+	L11.pack(padx=(0),pady=(0))
+	grp_entry.pack(padx=(7),pady=(5))
+	L5 = Label(tkWindow2, text='推帖網址只需填寫尾部的數字或英文,並用 , 連接').pack(fill=X)
+	L8 = Label(tkWindow2, text='441454859557899/permalink/1158855477817830/,860419800742325/permalink/3092415364209413/').pack(fill=X)
+	
 	#SaveDate
 	button = tk.Button(tkWindow2,
-		text='開始',                      # 显示在按钮上的文字
+		text='保存',                      # 显示在按钮上的文字
 		bg='green',
 		command=_SaveDate)                  # 点击按钮时执行的函数
 	button.pack(fill=X,pady=(10,10),ipady=(20)) # 将按钮锁定在窗口上
@@ -288,7 +474,9 @@ def _SaveDate():
 				'FB密碼': pwd_entry.get(),
 				#'IG帳號': IGname_entry.get(),
 				#'IG密碼': IGpwd_entry.get(),
-				'內容': txt_entry.get(1.0, END)
+				'發帖內容': txt_entry.get(1.0, END),
+				'推帖內容': UPgrp_entry.get(1.0, END),
+				'推帖網址': str([grp_entry.get(1.0, END)])
 			}
 		]
 	}
@@ -326,7 +514,7 @@ def _SaveDate():
 #OK202008012245
 #功能表#功能表#功能表#功能表#功能表#功能表#功能表#功能表#功能表#功能表#功能表#功能表#功能表
 tkWindow = Tk()  
-tkWindow.geometry('300x300')  
+tkWindow.geometry('300x350')  
 tkWindow.title('FBTool 請選擇功能 ')
 
 
@@ -344,6 +532,11 @@ _FBLoginButton = Button(tkWindow,text='登入Facebook', command=lambda:[_SeeDate
 _FBPostMyWallButtonButton = Button(tkWindow,text='Facebook發帖', command=_FBPostMyWall).pack(fill=X,ipady=(10))
 #_FBPostGroups
 lFBPostGroupsButtonButton = Button(tkWindow,text='Facebook群分享', command=_FBPostGroups).pack(fill=X,ipady=(10))
+
+#_FBAutoUpPost
+_FBAutoUpPostButton = Button(tkWindow,text='Facebook自動推帖', command=_FBAutoUpPost).pack(fill=X,ipady=(10))
+
+
 #_IGPost
 #_IGPostButton = Button(tkWindow,text='_IG發帖').pack(fill=X,ipady=(10))
 #_lookDate
