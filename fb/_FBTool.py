@@ -2,7 +2,7 @@
 '''
 _FBTool
 #202008042151
-github.com/mokaki
+https://raw.githubusercontent.com/mokaki/python/master/fb/_FBTool.py
 ---
 https://www.guru99.com/facebook-login-using-python.html
 https://stackoverflow.max-everyday.com/2019/12/selenium-chrome-options/
