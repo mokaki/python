@@ -1,0 +1,22 @@
+FBcode000 = str('https://www.facebook.com/')
+
+
+
+
+_loing_FBcode001 = str('//*[@id="email"]')
+_pass_FBcode002 = str('//*[@id="pass"]')
+_loginbutton_FBcode003 = str('//*[@id="u_0_b"]')
+#點留言
+FBcode001 = str('//*[@id="mount_0_0"]/div/div[1]/div[1]/div[3]/div/div/div[1]/div[1]/div/div/div[4]/div[2]/div/div[2]/div[1]/div/div/div/div[1]/div/div[1]/span')
+#寫留言
+FBcode002 = str('//*[@id="mount_0_0"]/div/div[1]/div[1]/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div[2]/div[1]/div[1]/div[1]/div/div/div/div/div/div/div/div/div/span')
+#發留言
+FBcode003 = str('//*[@id="mount_0_0"]/div/div[1]/div[1]/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div[3]/div[2]/div')
+FBcode004 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[1]/div[1]/div/div/div[4]/div[2]/div/div[2]/div[3]/div/div/div/div/div/div/div/div/div/div/div[2]/div/div[4]/div/div/div[1]/div/div/div[1]/div[2]/span')
+FBcode005 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div/div[1]/div/div[4]/div[2]/div/div/span')#分群
+FBcode006 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[1]/div/div/div/div[1]/div[2]/div/div/div[2]/div/div/div[1]/div/div/div/div/span/h1')
+FBcode007 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div/div[1]/div/div[5]')#分頁
+FBcode008 = str('//*[@id="jsc_c_2d"]/div[1]/div/div/div/div[2]/div/div/')
+#FBcode000 = str('')
+
+
