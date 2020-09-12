@@ -1,5 +1,5 @@
 
-#聯資
+#勞聯資
 #!/usr/bin/python3
 #!python*
 # -*- coding: utf-8 -*-
@@ -24,7 +24,7 @@ from selenium.webdriver.common.keys import Keys
 
 #基本
 DataURL 			= "../date/"
-DataURL1 			= "聯資.txt"
+DataURL1 			= "勞聯資.txt"
 chromedriverURL 	= "../.exe/chromedriver"
 
 WebDriverWaitMSG	= "\n******************!!!找不到這個網頁原素!!!******************\n"
@@ -67,7 +67,7 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 
 
 	#input日期,沒=今日
-	name = input('現在是'+time.strftime('%Y年%m月%d日-%H:%M:%S')+'\n請問您需要獲得本月那一天資料\n*冇0,限本月')
+	name = input('\n現在是'+time.strftime('%Y年%m月%d日-%H:%M:%S')+'\n請問您需要獲得本月那一天資料\n*冇0,限本月')
 	if name == '':
 		allurl = str(url01 + dayOfd + '/' + dayOfm + '/' + dayOfe)
 	else:
@@ -84,7 +84,8 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 
 		DataURL00 = str(DataURL+(allurl[-10:].replace('/', ''))+'-'+time.strftime('%Y%m%d%H')+DataURL1) # 文件名
 		fp = open(DataURL00  , "a", encoding="utf-8" )													#打開文件
-		fp.writelines(allurl[-10:]+'-'+str(time.strftime('%Y%m%d-%H%M%S'))+'\n')
+		fp.writelines(allurl[-10:]+'-'+str(time.strftime('%Y%m%d-%H%M%S'))+'='+ss0+'\n')
+		print('\n**********************************')
 		fp.close()																						#关闭文件
 
 		#每一頁
@@ -118,15 +119,17 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 			browser.get(allurlN20)
 			ss0 = (browser.find_element_by_xpath(co0)).text		 #空缺數
 			if (int(ss0) == 0): 				 #讓迴圈結束的條件
+
+				fp = open(DataURL00  , "a", encoding="utf-8" )													#打開文件
+				fp.writelines('\n'+allurl[-10:]+'-'+str(time.strftime('%Y%m%d-%H%M%S'))+'END')
+				fp.close()																						#关闭文件
+				print('\n',allurl[-10:],'-',str(time.strftime('%Y%m%d-%H%M%S')),'資料已保存\n')
+
 				break
 		#每一頁END
 
-		fp = open(DataURL00  , "a", encoding="utf-8" )													#打開文件
-		fp.writelines('\n'+allurl[-10:]+'-'+str(time.strftime('%Y%m%d-%H%M%S'))+'END')
-		fp.close()																						#关闭文件
-		print('\n',allurl[-10:],'-',str(time.strftime('%Y%m%d-%H%M%S')),'資料已保存\n')
 
-		os.system("pause")
+	os.system("pause")
 
 
 
