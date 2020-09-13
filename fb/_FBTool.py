@@ -72,6 +72,10 @@ FBcode005 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[2]/div/d
 FBcode006 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[1]/div/div/div/div[1]/div[2]/div/div/div[2]/div/div/div[1]/div/div/div/div/span/h1')
 FBcode007 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div/div[1]/div/div[5]')#分頁
 FBcode008 = str('//*[@id="jsc_c_2d"]/div[1]/div/div/div/div[2]/div/div/')
+FBcode009 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div[4]/div/div/div/div/div/div[1]/div/div/div/div/div/div/div/div/div/div/div[2]/div/div[4]/div/div/div[2]/div[5]/div[2]/div[1]/div/div/div[1]/form/div/div/div/div/div/div/div')
+FBcode010 = str('//*[@id="email"]')
+FBcode011 = str('//*[@id="pass"]')
+FBcode012 = str('//*[@id="u_0_b"]')
 #FBcode000 = str('')
 
 
@@ -79,13 +83,7 @@ FBcode008 = str('//*[@id="jsc_c_2d"]/div[1]/div/div/div/div[2]/div/div/')
 
 
 
-
-
-
-
-
-
-#OK202008012245
+#OK202009140049
 #_FBLogin#_FBLogin#_FBLogin#_FBLogin#_FBLogin#_FBLogin#_FBLogin#_FBLogin#_FBLogin
 def _FBLogin():
 	print ('\nrun _FBLogin')
@@ -93,19 +91,22 @@ def _FBLogin():
 	# ===显式等待===
 	# 设置元素等待实例，最多等10秒，每0.5秒查看条件是否成立
 	# 条件：直到元素加载完成
+
+	#登入FB頁
 	browser.get(FBcode000)
-	element = WebDriverWait(browser, 10, 0.5).until(
-		EC.presence_of_element_located((By.ID, "email")),WebDriverWaitMSG + "email"
+	element = WebDriverWait(browser, 10, 0.5).until(		#找入email位
+		EC.presence_of_element_located((By.XPATH,FBcode010)),WebDriverWaitMSG + FBcode010
 	)
-	# Step 3) Search & Enter the Email or Phone field & Enter Password
-	username = browser.find_element_by_id("email")
-	password = browser.find_element_by_id("pass")
-	submit   = browser.find_element_by_id("loginbutton")
-	username.send_keys(name_entry)
-	password.send_keys(pwd_entry)
-	# Step 4) Click Login
-	submit.click()
+	username002 = browser.find_element_by_xpath(FBcode010)
+	username002.send_keys(name_entry)						#入email
 	time.sleep(random.uniform(3, 11))
+	password002 = browser.find_element_by_xpath(FBcode011)
+	password002.send_keys(pwd_entry)						#入PS
+	time.sleep(random.uniform(3, 11))
+	submit002   = browser.find_element_by_xpath(FBcode012)	#點
+	submit002.click()
+	time.sleep(random.uniform(3, 11))
+
 	#取AC名
 	browser.get(FBcode000+'me/')
 	time.sleep(random.uniform(3, 11))
@@ -253,9 +254,7 @@ def _FBPostGroups():
 
 
 
-FBcode009 = str('//*[@id="mount_0_0"]/div/div/div[1]/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div[4]/div/div/div/div/div/div[1]/div/div/div/div/div/div/div/div/div/div/div[2]/div/div[4]/div/div/div[2]/div[5]/div[2]/div[1]/div/div/div[1]/form/div/div/div/div/div/div/div')
-FBcode010 = str('')
-FBcode011 = str('')
+
 
 #_FBAutoUpPost#_FBAutoUpPost#_FBAutoUpPost#_FBAutoUpPost#_FBAutoUpPost#_FBAutoUpPost#_FBAutoUpPost
 def _FBAutoUpPost():
