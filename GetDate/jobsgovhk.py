@@ -23,24 +23,24 @@ from selenium.webdriver.common.keys import Keys
 import re  
 
 #基本
-DataURL 			= "../date/"
-DataURL1 			= "勞聯資.txt"
-chromedriverURL 	= "../.exe/chromedriver"
+DataURL						= "../date/"
+DataURL1					= "勞聯資.txt"
+chromedriverURL				= "../.exe/chromedriver"
 
-WebDriverWaitMSG	= "\n******************!!!找不到這個網頁原素!!!******************\n"
-WebDriverWaitMSGEND = "\n***********************************************************"
-today 				= datetime.date.today()
-dayOfe				= str(today)[0:4] 				#今年號
-dayOfm				= str(int(str(today)[5:7])) 	#今月號/0
-dayOfd				= str(today)[8:11]			    #今日號
+WebDriverWaitMSG			= "\n******************!!!找不到這個網頁原素!!!******************\n"
+WebDriverWaitMSGEND			= "\n***********************************************************"
+today						= datetime.date.today()
+dayOfe						= str(today)[0:4] 				#今年號
+dayOfm						= str(int(str(today)[5:7]))		#今月號/0
+dayOfd						= str(today)[8:11]				#今日號
 
 #努網code
-url01 = 'https://www1.jobs.gov.hk/1/0/WebForm/jobseeker/jobsearch/quickview.aspx?SearchFor=vac_by_date&ID=' #勞網
-c93   = str('&SortBy=&from=&start=')
-co0	  = str('//*[@id="ctl00_ContentPlaceHolder1_uxTotalPage"]/span[1]')							          #空缺數
-co1   = str('//*[@id="ctl00_ContentPlaceHolder1_uxJobCard_uxAppNote"]')
-c91   = str('//*[@id="uxResult"]/tbody/tr[')														   #click20次
-c92   = str(']')
+url01	= 'https://www1.jobs.gov.hk/1/0/WebForm/jobseeker/jobsearch/quickview.aspx?SearchFor=vac_by_date&ID=' #勞網
+c93		= str('&SortBy=&from=&start=')
+co0		= str('//*[@id="ctl00_ContentPlaceHolder1_uxTotalPage"]/span[1]')							          #空缺數
+co1		= str('//*[@id="ctl00_ContentPlaceHolder1_uxJobCard_uxAppNote"]')
+c91		= str('//*[@id="uxResult"]/tbody/tr[')														   #click20次
+c92		= str(']')
 
 
 
@@ -146,4 +146,5 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 
 
 _seeToDay()#打開app,網址+日期自動
+
 
