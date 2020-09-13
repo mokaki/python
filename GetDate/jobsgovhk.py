@@ -90,7 +90,7 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 		fp = open(DataURL00  , "a", encoding="utf-8" )							 #打開文件
 		fp.writelines(allurl10aaa+'-'+str(time.strftime('%Y%m%d-%H%M%S'))+'='+ss0+'\n')
 		print('\n**************',allurl10aaa,'共有',ss0,'個資料**************\n')
-		fp.close()																						#关闭文件
+		fp.close()											#关闭文件
 
 		#每一頁
 		SortBy = 0											#一頁20工,下頁+20
