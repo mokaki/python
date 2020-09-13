@@ -114,7 +114,7 @@ def _FBLogin():
 			EC.presence_of_element_located((By.XPATH,FBcode006)),WebDriverWaitMSG + FBcode006
 		)
 	FBACName = browser.find_element_by_xpath(FBcode006)
-	print ('\n',FBACName.text,'成功登入facebook!!')
+	print ('\n',FBACName.text,'成功登入facebook!!'),tkWindow.mainloop()
 
 
 
