@@ -30,16 +30,16 @@ chromedriverURL				= "../.exe/chromedriver"
 WebDriverWaitMSG			= "\n******************!!!找不到這個網頁原素!!!******************\n"
 WebDriverWaitMSGEND			= "\n***********************************************************"
 today					= datetime.date.today()
-dayOfe					= str(today)[0:4] 										#今年號
-dayOfm					= str(int(str(today)[5:7]))									#今月號/0
-dayOfd					= str(today)[8:11]										#今日號
+dayOfe					= str(today)[0:4] 									#今年號
+dayOfm					= str(int(str(today)[5:7]))								#今月號/0
+dayOfd					= str(today)[8:11]									#今日號
 
 #努網code
-url01	= 'https://www1.jobs.gov.hk/1/0/WebForm/jobseeker/jobsearch/quickview.aspx?SearchFor=vac_by_date&ID='				#勞網
+url01	= 'https://www1.jobs.gov.hk/1/0/WebForm/jobseeker/jobsearch/quickview.aspx?SearchFor=vac_by_date&ID='			#勞網
 c93		= str('&SortBy=&from=&start=')
-co0		= str('//*[@id="ctl00_ContentPlaceHolder1_uxTotalPage"]/span[1]')							#空缺數
+co0		= str('//*[@id="ctl00_ContentPlaceHolder1_uxTotalPage"]/span[1]')						#空缺數
 co1		= str('//*[@id="ctl00_ContentPlaceHolder1_uxJobCard_uxAppNote"]')
-c91		= str('//*[@id="uxResult"]/tbody/tr[')											#click20次
+c91		= str('//*[@id="uxResult"]/tbody/tr[')										#click20次
 c92		= str(']')
 
 
@@ -56,11 +56,11 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 
 	#瀏覽器
 	options = webdriver.ChromeOptions() 										
-	prefs   = {'profile.default_content_setting_values':{'notifications' : 2}}						#禁用瀏覽器彈窗
+	prefs   = {'profile.default_content_setting_values':{'notifications' : 2}}					#禁用瀏覽器彈窗
 	options.add_experimental_option('prefs',prefs)
-	options.add_argument('--headless')											#冇頭
-	options.add_argument('--no-sandbox')											#冇頭
-	options.add_argument("--log-level=3")											#不提示log
+	options.add_argument('--headless')										#冇頭
+	options.add_argument('--no-sandbox')										#冇頭
+	options.add_argument("--log-level=3")										#不提示log
 	browser = webdriver.Chrome(chromedriverURL ,chrome_options=options)
 	#browser.set_window_size(480, 600)											
 	#瀏覽器END
@@ -68,13 +68,13 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 
 
 	#input日期,沒=今日
-	name = input('\n現在是'+time.strftime('%Y年%m月%d日-%H:%M:%S')+'\n請問您需要獲得本月那一天資料\n*冇0,限本月')
+	name = input('\n現在是'+time.strftime('%Y年%m月%d日-%H:%M:%S')+'\n請問您需要獲得本月那一天資料\n*不需0,限本月')
 	if name == '':
 		allurl = str(url01 + dayOfd + '/' + dayOfm + '/' + dayOfe)
 	else:
 		allurl = str(url01 + name + '/' + dayOfm + '/' + dayOfe)
-	browser.get(allurl)													#打開app,網址+日期自動
-	allurl10 = allurl[-10:] 												#allurl10aaa=只日期數字
+	browser.get(allurl)												#打開app,網址+日期自動
+	allurl10 = allurl[-10:] 											#allurl10aaa=只日期數字
 	allurl10aaa = re.sub(u"([^\u0030-\u0039])","",allurl10)					
 	ss0 = (browser.find_element_by_xpath(co0)).text#空缺數
 
@@ -120,19 +120,19 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 					break
 			#click20次搜尋結果排序 1~20END
 
-			SortBy += 20											#下頁+20
+			SortBy += 20									#下頁+20
 			SortBy2 = SortBy + 20
 			print('\n*****************' ,SortBy , '至' , SortBy2 , '*****************\n')
-			allurlN20 = str(allurl + c93 + str(SortBy))							#搜尋結果下一頁
+			allurlN20 = str(allurl + c93 + str(SortBy))					#搜尋結果下一頁
 			browser.get(allurlN20)
-			ss0 = (browser.find_element_by_xpath(co0)).text							#空缺數
+			ss0 = (browser.find_element_by_xpath(co0)).text					#空缺數
 
 
-			if (int(ss0) == 0): 										#到最後+20頁,空缺數=0
+			if (int(ss0) == 0): 								#到最後+20頁,空缺數=0
 				print('\n成功取得',ss1textnum002,'個資料\n')
-				fp = open(DataURL00  , "a", encoding="utf-8" )						#打開文件
+				fp = open(DataURL00  , "a", encoding="utf-8" )				#打開文件
 				fp.writelines('\n'+allurl10aaa+'-'+str(time.strftime('%Y%m%d-%H%M%S'))+'-END')
-				fp.close()										#关闭文件
+				fp.close()								#关闭文件
 				print('\n',allurl10aaa,'-',str(time.strftime('%Y%m%d-%H%M%S')),'資料已保存\n')
 
 				break
