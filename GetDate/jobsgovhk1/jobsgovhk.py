@@ -137,7 +137,7 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 
 
 				#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資
-				print(d02,'\n',d03,'\n',d05,'\n',d07,'\n',d08,'\n****************************\n')
+				print(d02,'\n',d03,'\n',d05,'\n',d07,'\n',d08,'\n****************************',ss1textnum002,'/',ss0,'***\n')
 
 	
 	
