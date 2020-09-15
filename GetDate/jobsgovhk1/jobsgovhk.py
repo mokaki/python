@@ -38,15 +38,20 @@ ss1textnum002	= 1																					#JS第一行初始
 
 #努網code
 url01	= 'https://www1.jobs.gov.hk/1/0/WebForm/jobseeker/jobsearch/quickview.aspx?SearchFor=vac_by_date&ID='
-c93		= str('&SortBy=&from=&start=')
+url02	= str('&SortBy=&from=&start=')
+url03	= str('//*[@id="uxResult"]/tbody/tr[')														#左邊格 點20次
+url04	= str(']')
 co0		= str('//*[@id="ctl00_ContentPlaceHolder1_uxTotalPage"]/span[1]')							#空缺數
-co1		= str('//*[@id="ctl00_ContentPlaceHolder1_uxJobCard_uxAppNote"]')
-c91		= str('//*[@id="uxResult"]/tbody/tr[')														#左邊格 點20次
-c92		= str(']')
 
-
-
-
+co1		= str('//*[@id="ctl00_ContentPlaceHolder1_uxJobCard_uxJcard"]/table[2]/tbody/tr[1]/td[1]')	#編號
+co2		= str('//*[@id="ctl00_ContentPlaceHolder1_uxJobCard_uxJcard"]/table[2]/tbody/tr[1]/td[2]')	#日期
+co3		= str('//*[@id="ctl00_ContentPlaceHolder1_uxJobCard_uxJobTitleDiv"]')						#職位
+co4		= str('//*[@id="ctl00_ContentPlaceHolder1_uxJobCard_uxJcard"]/table[2]/tbody/tr[3]/td')		#公司/僱主名稱
+co5		= str('//*[@id="ctl00_ContentPlaceHolder1_uxJobCard_uxJcard"]/table[2]/tbody/tr[4]/td[1]')	#地區
+co6		= str('//*[@id="ctl00_ContentPlaceHolder1_uxJobCard_uxJcard"]/table[2]/tbody/tr[4]/td[2]')	#行業
+co7		= str('//*[@id="ctl00_ContentPlaceHolder1_uxJobCard_uxJcard"]/table[2]/tbody/tr[5]/td')		#職責資歷待遇
+co8		= str('//*[@id="ctl00_ContentPlaceHolder1_uxJobCard_uxJcard"]/table[2]/tbody/tr[6]/td')		#申請須知
+co9		= str('//*[@id="ctl00_ContentPlaceHolder1_uxJobCard_uxJcard"]/table[2]/tbody/tr[7]/td')		#備註
 
 
 
@@ -117,16 +122,29 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 
 			#click20次搜尋結果排序 1~20
 			while (count <= 20): 
-				element = WebDriverWait(browser, 10, 0.5).until(					#co1作錨點 沒co1會報錯
-						EC.presence_of_element_located((By.XPATH,co1)),WeMSG + co1 + WeMSGEND
+				element = WebDriverWait(browser, 10, 0.5).until(					#co8作錨點 沒co8會報錯
+						EC.presence_of_element_located((By.XPATH,co8)),WeMSG + co8 + WeMSGEND
 					)
-				d01 = browser.find_element_by_xpath(co1).text						#申請須知=聯資
-				print(d01)#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資
+				d01 = browser.find_element_by_xpath(co1).text						#編號
+				d02 = browser.find_element_by_xpath(co2).text						#日期
+				d03 = browser.find_element_by_xpath(co3).text						#職位
+				d04 = browser.find_element_by_xpath(co4).text						#公司/僱主名稱
+				d05 = browser.find_element_by_xpath(co5).text						#地區
+				d06 = browser.find_element_by_xpath(co6).text						#行業
+				d07 = browser.find_element_by_xpath(co7).text						#職責資歷待遇
+				d08 = browser.find_element_by_xpath(co8).text						#申請須知=聯資
+				d09 = browser.find_element_by_xpath(co9).text						##備註
+
+
+				#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資#聯資
+				print(d02,'\n',d03,'\n',d05,'\n',d07,'\n',d08,'\n****************************\n')
+
+	
 	
 				# 加到J尾
 				with open(DL00, encoding="utf-8") as f31010102:
 					dat2a = json.load(f31010102)
-					dat2a[str(ss1textnum002)] = str(d01) 
+					dat2a[str(ss1textnum002)] = str(d01),str(d02),str(d03),str(d04),str(d05),str(d06),str(d07),str(d08),str(d09)
 				os.remove(DL00)
 				with open(DL00, 'a', encoding="utf-8") as f31010102:
 					json.dump(dat2a, f31010102, ensure_ascii=False, indent=4)
@@ -136,7 +154,7 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 				#click20次下個
 				count += 1
 				count00 = str(count)
-				allc9 = str(c91 + count00 + c92)							#搜尋結果下一個
+				allc9 = str(url03 + count00 + url04)							#搜尋結果下一個
 				ss1 = browser.find_element_by_xpath(allc9)
 				ss1textnum = ss1.text[0:4]									#現點工號純數	
 				ss1textnum002 = ss1textnum.split()[0]						#空格後不要
@@ -156,7 +174,7 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 			SortBy += 20															#下頁+20
 			SortBy2 = SortBy + 20
 			print('\n*****************' ,SortBy , '至' , SortBy2 , '*****************\n')
-			allurlN20 = str(allurl + c93 + str(SortBy))	  							#搜尋結果下一頁
+			allurlN20 = str(allurl + url02 + str(SortBy))	  						#搜尋結果下一頁
 			browser.get(allurlN20)
 			ss0 = (browser.find_element_by_xpath(co0)).text							#空缺數
 
