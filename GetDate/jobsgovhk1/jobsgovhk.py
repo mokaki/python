@@ -24,7 +24,7 @@ from selenium.webdriver.common.keys import Keys
 import re  
 
 #基本
-DL01			= "../date/"
+DL01			= "../date/" 																		#您的存檔位
 DL02			= "勞聯資.json"
 chromedriverURL	= "../.exe/chromedriver"
 
@@ -100,7 +100,7 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 		os.system("pause"),_selLOex()
 	else:
 		DL00 = str(DL01+(allurl10aaa.replace('/', ''))+'-'+time.strftime('%Y%m%d%H%M%S')+DL02)	#文件名
-		informations001 = {'日期':allurl10aaa,'總數':ss0,'開始時間':time.strftime('%H%M%S')}		#日:總 #第一行字
+		informations001 = {'資料日期':allurl10aaa,'總數':ss0,'開始時間':time.strftime('%H%M%S')}		#日:總 #第一行字
 		json_st01r = json.dumps(informations001, ensure_ascii=False, indent=4)					#缩进4字符
 		with open(DL00, 'a', encoding="utf-8") as json_file:									#開文件寫入第一行字
 			json_file.write(json_st01r)
@@ -138,8 +138,9 @@ def _seeToDay():#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_seeToDay#_se
 				count00 = str(count)
 				allc9 = str(c91 + count00 + c92)							#搜尋結果下一個
 				ss1 = browser.find_element_by_xpath(allc9)
-				ss1textnum = ss1.text[0:3]									#現點工號純數	
-				ss1textnum002 = re.sub(u"([^\u0030-\u0039\u0041-\u005a\u0061-\u007a])","",ss1textnum)
+				ss1textnum = ss1.text[0:4]									#現點工號純數	
+				ss1textnum002 = ss1textnum.split()[0]						#空格後不要
+				#ss1textnum002 = re.sub(u"([^\u0030-\u0039])","",ss1textnum)
 
 				if ss1textnum002 == ss0:									#現點工號=空缺數=回
 					break
