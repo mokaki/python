@@ -1,6 +1,6 @@
 
 #蛇料88db
-#202009160149
+#202009170522
 #!/usr/bin/python3
 #!python*
 # -*- coding: utf-8 -*-
@@ -28,6 +28,7 @@ import re
 BCR			= "../.exe/chromedriver"							#ChromedriverURL
 WeMSG		= "\n********!!!找不到這個網頁原素!!!********\n"		#ERROR MSG
 WeMSGEND	= "\n****************"
+DL02		= ".txt"
 
 
 
@@ -77,31 +78,18 @@ URL041 = 'Professional-Courses/1/'					#專業課程
 URL042 = 'Self-Improve-Courses/1/'					#個人提升課程
 URL043 = 'Startup-Courses/1/'						#創業課程
 
-co1		= str('//*[@id="listing-filter-1"]/div[3]/div[2]/span[1]') #總數
+#列表頁總數
+co1		= str('//*[@id="listing-filter-1"]/div[3]/div[2]/span[1]') 
+#列表頁的每產品的圖的href
+co2		= str('//*[@id="grid"]/div/div[1]/div[2]/div[')
+co2B	= str(']/div[*]/div[1]/div/a')
 
+#產品頁的TEL
+co3		= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[3]/div/a[1]')				#WTS
+co4		= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[*]/div[2]/div/div[*]/a')	#TEL
 
-co2		= str('//*[@id="grid"]/div/div[1]/div[2]/div[2]/div[*]/div[1]/div/a')
-co3		= str('//*[@id="grid"]/div/div[1]/div[2]/div[3]/div[*]/div[1]/div/a')
-co4		= str('//*[@id="grid"]/div/div[1]/div[2]/div[4]/div[*]/div[1]/div/a')
-co5		= str('//*[@id="grid"]/div/div[1]/div[2]/div[5]/div[*]/div[1]/div/a')
-co6		= str('')
-co7		= str('')
-co8		= str('')
-co9		= str('')
-c10		= str('')
-c11		= str('')
-c12		= str('')
-c13		= str('')
-c14		= str('')
-c15		= str('')
-c16		= str('')
-c17		= str('')
-c18		= str('')
-c19		= str('')
-c20		= str('')
-c21		= str('//*[@id="grid"]/div/div[1]/div[2]/div[21]/div[*]/div[1]/div/a')
-
-
+			   
+		
 
 def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88dbData
 	#瀏覽器
@@ -112,39 +100,66 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 	options.add_argument('--no-sandbox')											#冇頭
 	options.add_argument("--log-level=3")											#不提示log
 	browser = webdriver.Chrome(BCR ,chrome_options=options)
-	#browser.set_window_size(480, 600)											
+	#browser.set_window_size(480, 600)					
 	#瀏覽器END
 
+	#初始資料
+	DL00 = str('88dbDate-'+time.strftime('%Y%m')+DL02)			#文件名	88dbDate-202009.txt
+	fp = open(DL00, "a", encoding="utf-8" )						#開/創文件
+	fp.writelines('88dbDate-'+time.strftime('%Y%m')+'\n')		#文件第一行
+	fp.close()
 
 
-	#到網+初始資料
-	browser.get(URL000+URL001)	
-	element = WebDriverWait(browser, 10, 0.5).until(					#co8作錨點 沒co8會報錯
-			EC.presence_of_element_located((By.XPATH,co2)),WeMSG + co2 + WeMSGEND
-		)
 
+
+
+	#到網
+	browser.get(URL000+URL001)
+	count = 2													#列表頁內的數 2~21
 	
-	d02 = browser.find_elements_by_xpath(co2) 
-	d02url = d02[0].get_attribute("href")
 
-	d03 = browser.find_elements_by_xpath(co3) 
-	d03url = d03[0].get_attribute("href")
+	#列表頁內找21次
+	while (count <= 21):  										#少於21執行
+		co2000  = str(co2 + str(count) + co2B)					#正式列表頁的每產品的圖的href
+		element = WebDriverWait(browser, 10, 0.5).until(		#co2000作錨點 沒會報錯
+				EC.presence_of_element_located((By.XPATH,co2000)),WeMSG + co2000 + WeMSGEND
+			)
+		d02 = browser.find_elements_by_xpath(co2000)			#取圖的href
+		d02url = d02[0].get_attribute("href")
+		browser.get(d02url)										#入href取聯
+		d03 = (browser.find_elements_by_xpath(co3))				#找WTS
+		while True:
+			if d03 != []:										#WTS非空
+				d03WTS = d03[0].get_attribute("href")
+				fp = open(DL00, "a", encoding="utf-8" )	
+				fp.writelines((d03WTS[36:47])+'\n')				#記WTS
+				fp.close()
+				print ("\n成功取得WTS聯絡資料",(d03WTS[36:47]))
+				break
+			else:			
+				d04 = (browser.find_elements_by_xpath(co4))		#冇WTS找TEL
+				while True:
+					if d04 != []:								#TEL非空
+						fp = open(DL00, "a", encoding="utf-8" )	
+						fp.writelines((d04[0].text)+'\n')		#記TEL
+						fp.close()
+						print ("\n成功取得TEL聯絡資料",(d04[0].text))
+						break
+					else:										#冇TEL下個
+						break
+				break											#記完退
+		browser.back()											#回列表頁
+		count += 1												#列表頁內的數+1
+		#time.sleep(random.uniform(3, 11))						#隨機等
+	#列表頁內找21次END
 
-	d04 = browser.find_elements_by_xpath(co4) 
-	d04url = d04[0].get_attribute("href")
-
-	d05 = browser.find_elements_by_xpath(co5) 
-	d05url = d05[0].get_attribute("href")
-
-	d21 = browser.find_elements_by_xpath(c21) 
-	d21url = d21[0].get_attribute("href")
 
 
-	print(d02url,'**************\n')
-	print(d03url,'**************\n')
-	print(d04url,'**************\n')
-	print(d05url,'**************\n')
-	print(d21url,'**************\n')
+	fp = open(DL00, "a", encoding="utf-8" )
+	fp.writelines('完')											#文件尾行
+	fp.close()
+	print ("\n已成功取得所有聯絡資料")
+
 
 
 	os.system("pause")
