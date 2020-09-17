@@ -104,19 +104,17 @@ browser = webdriver.Chrome(BCR ,chrome_options=options)
 #browser.set_window_size(640, 360)					
 #瀏覽器END
 
+#初始資料
 browser.get(URL000+URL001)														#到網
+DL00 = str('88dbDate-'+time.strftime('%Y%m')+DL02)			#文件名	88dbDate-202009.txt
+fp = open(DL00, "a", encoding="utf-8" )						#開/創文件
+fp.writelines('88dbDate-'+time.strftime('%H%M%S')+'\n')		#文件第一行
+fp.close()
+
 
 
 def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88dbData
 
-
-	#初始資料
-	DL00 = str('88dbDate-'+time.strftime('%Y%m')+DL02)			#文件名	88dbDate-202009.txt
-	fp = open(DL00, "a", encoding="utf-8" )						#開/創文件
-	fp.writelines('88dbDate-'+time.strftime('%Y%m')+'\n')		#文件第一行
-	fp.close()
-
-	
 	count = 2													#列表頁內的數 2~21
 	#列表頁內找21次
 	while (count <= 21):  										#少於21執行
@@ -125,7 +123,9 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 		if d02 != []:											#列表頁有該號產品
 			d02url = d02[0].get_attribute("href")				#取圖的href
 			browser.get(d02url)									#入href取聯
+			time.sleep(random.uniform(3, 11))					#隨機等
 			d03 = (browser.find_elements_by_xpath(co3))			#找WTS
+			
 			while True:
 				if d03 != []:									#WTS非空
 					d03WTS = d03[0].get_attribute("href")
@@ -163,17 +163,14 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changePagea
 	time.sleep(random.uniform(3, 11))						#隨機等
 	d05 = (browser.find_elements_by_xpath(co5))
-	if d05[0].text == '後頁':
-		browser.execute_script("arguments[0].click();", d05[0])
+	if d05[0].text == '後頁':								#夠21,轉後頁
+		browser.execute_script("arguments[0].click();", d05[0]) #特別點擊
 		print ("\n下20個"), _see88dbData()
 	else:
-		print ("\n已成功取得所有頁的聯絡資料了")
-		os.system("pause")
-
-
+		print ("\n已成功取得所有頁的聯絡資料了")				#冇後頁OUT
 
 	fp = open(DL00, "a", encoding="utf-8" )
-	fp.writelines('完')											#文件尾行
+	fp.writelines('完'+time.strftime('%H%M%S'))					#文件尾行
 	fp.close()
 	print ("\n已成功取得所有聯絡資料")
 
