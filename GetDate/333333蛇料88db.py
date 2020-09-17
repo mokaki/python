@@ -86,7 +86,7 @@ co2B	= str(']/div[*]/div[1]/div/a')
 
 #產品頁的TEL
 
-co3		= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[3]/div[*]/a[*]')				#WTS
+co3		= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[*]/div[*]/a[*]')				#WTS
 co4		= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[*]/div[2]/div/div[*]/a')	#TEL
 co5		= str('//a[text()="後頁"]')								#後頁
 
@@ -112,7 +112,6 @@ fp.close()
 
 
 def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88dbData
-
 	count = 2													#列表頁內的數 2~21
 	#列表頁內找21次
 	while (count <= 21):  										#少於21執行
@@ -153,7 +152,6 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 			count = 21
 			break
 	#列表頁內找21次END
-
 	_changePagea()
 
 
