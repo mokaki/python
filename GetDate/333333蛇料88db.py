@@ -122,8 +122,9 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 			browser.get(d02url)									#入href取聯
 			time.sleep(random.uniform(3, 11))					#隨機等
 			d03 = (browser.find_elements_by_xpath(co3))			#找WTS
+
 			while True:
-				if d03[0].get_attribute("href") != None:		#WTSLink非空
+				if len(d03) != 0 :								#WTS非空
 					time.sleep(random.uniform(3, 11))			#隨機等
 					d03WTS = d03[0].get_attribute("href")
 					fp = open(DL00, "a", encoding="utf-8" )	
@@ -180,3 +181,10 @@ def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changeP
 
 
 _see88dbData()
+
+
+
+
+
+
+
