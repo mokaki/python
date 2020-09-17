@@ -30,8 +30,6 @@ WeMSG		= "\n********!!!找不到這個網頁原素!!!********\n"		#ERROR MSG
 WeMSGEND	= "\n****************"
 DL02		= ".txt"
 
-
-
 #88db網code
 URL000 = 'https://88db.com.hk/Business/'
 URL001 = 'Business-for-Sale/1/'						#生意頂讓
@@ -79,18 +77,15 @@ URL042 = 'Self-Improve-Courses/1/'					#個人提升課程
 URL043 = 'Startup-Courses/1/'						#創業課程
 
 #列表頁總數
-co1		= str('//*[@id="listing-filter-1"]/div[3]/div[2]/span[1]') 
+co1	   = str('//*[@id="listing-filter-1"]/div[3]/div[2]/span[1]') 
 #列表頁的每產品的圖的href
-co2		= str('//*[@id="grid"]/div/div[1]/div[2]/div[')
-co2B	= str(']/div[*]/div[1]/div/a')
+co2	   = str('//*[@id="grid"]/div/div[1]/div[2]/div[')
+co2B   = str(']/div[*]/div[1]/div/a')
 
 #產品頁的TEL
-
-co3		= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[*]/div[*]/a[*]')				#WTS
-co4		= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[*]/div[2]/div/div[*]/a')	#TEL
-co5		= str('//a[text()="後頁"]')		
-
-						#後頁
+co3	= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[*]/div[*]/a[*]')			#WTS
+co4	= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[*]/div[2]/div/div[*]/a')	#TEL
+co5	= str('//a[text()="後頁"]')																#後頁
 
 #瀏覽器
 options = webdriver.ChromeOptions() 										
@@ -104,17 +99,18 @@ browser = webdriver.Chrome(BCR ,chrome_options=options)
 #瀏覽器END
 
 #初始資料
-browser.get(URL000+URL001)														#到網
-#browser.get('https://88db.com.hk/Business/Business-for-Sale/3/')	
-
-
-DL00 = str('88dbDate-'+time.strftime('%Y%m')+DL02)			#文件名	88dbDate-202009.txt
-fp = open(DL00, "a", encoding="utf-8" )						#開/創文件
-fp.writelines('88dbDate-'+time.strftime('%H%M%S')+'\n')		#文件第一行
+browser.get(URL000+URL001)										#到網
+DL00 = str('88dbDate-'+time.strftime('%Y%m')+DL02)				#文件名	88dbDate-202009.txt
+fp = open(DL00, "a", encoding="utf-8" )							#開/創文件
+fp.writelines('88dbDate-'+time.strftime('%H%M%S')+'\n')			#文件第一行
 fp.close()
 
 
 
+
+
+
+#找資
 def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88dbData
 	count = 2													#列表頁內的數 2~21
 	#列表頁內找21次
@@ -123,18 +119,10 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 		d02 = browser.find_elements_by_xpath(co2000)
 		if d02 != []:											#列表頁有該號產品
 			d02url = d02[0].get_attribute("href")				#取圖的href
-
-
 			browser.get(d02url)									#入href取聯
 			time.sleep(random.uniform(3, 11))					#隨機等
-
-
-
 			d03 = (browser.find_elements_by_xpath(co3))			#找WTS
 			d04 = (browser.find_elements_by_xpath(co4))			#冇WTS找TEL
-			#print ("\n冇產e",d03)
-			#print ("\n冇夠20個",d04)
-
 			while True:
 				if d03 == [] and d04 == []:								#冇WTS冇TEL走
 					print ("\n冇WTS冇TEL走")
@@ -164,7 +152,6 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 									break
 							break										#記完退
 				break
-
 			browser.back()										#回列表頁
 			count += 1											#列表頁內的數+1
 		else:													#冇產品回
@@ -178,22 +165,28 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 
 
 
+
+
+#轉下頁至冇後頁
+SortBy = 0
 def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changePagea
-	time.sleep(random.uniform(3, 11))						#隨機等
-	d05 = (browser.find_elements_by_xpath(co5))
-	if d05[0].text == '後頁':								#夠21,轉後頁
-		browser.execute_script("arguments[0].click();", d05[0]) #特別點擊
-		print ("\n下20個"), _see88dbData()
+	global SortBy
+	time.sleep(random.uniform(3, 11))								#隨機等
+	d05 = (browser.find_elements_by_xpath(co5))						#後頁btn
+	if d05 == [] :	
+		print ("\n已成功取得所有頁的聯絡資料了")						#冇後頁OUT
+		print ("\n下個類")
 	else:
-		print ("\n已成功取得所有頁的聯絡資料了")				#冇後頁OUT
-
+		if d05[0].text == '後頁' :									#夠21,轉後頁
+			browser.execute_script("arguments[0].click();", d05[0]) #特別點擊
+			SortBy += 21
+			SortBy2 = SortBy + 19
+			print('\n*****************' , SortBy , '至' , SortBy2  ,'*****************\n')
+			_see88dbData()
 	fp = open(DL00, "a", encoding="utf-8" )
-	fp.writelines('完'+time.strftime('%H%M%S'))					#文件尾行
+	fp.writelines('完'+time.strftime('%H%M%S')+"\n")					#文件尾行
 	fp.close()
-	print ("\n已成功取得所有聯絡資料")
-
-
-
+	print ("\nEND")
 	os.system("pause")
 
 
