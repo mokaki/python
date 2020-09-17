@@ -88,8 +88,9 @@ co2B	= str(']/div[*]/div[1]/div/a')
 
 co3		= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[*]/div[*]/a[*]')				#WTS
 co4		= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[*]/div[2]/div/div[*]/a')	#TEL
-co5		= str('//a[text()="後頁"]')								#後頁
+co5		= str('//a[text()="後頁"]')		
 
+						#後頁
 
 #瀏覽器
 options = webdriver.ChromeOptions() 										
@@ -104,6 +105,9 @@ browser = webdriver.Chrome(BCR ,chrome_options=options)
 
 #初始資料
 browser.get(URL000+URL001)														#到網
+#browser.get('https://88db.com.hk/Business/Business-for-Sale/3/')	
+
+
 DL00 = str('88dbDate-'+time.strftime('%Y%m')+DL02)			#文件名	88dbDate-202009.txt
 fp = open(DL00, "a", encoding="utf-8" )						#開/創文件
 fp.writelines('88dbDate-'+time.strftime('%H%M%S')+'\n')		#文件第一行
@@ -119,32 +123,48 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 		d02 = browser.find_elements_by_xpath(co2000)
 		if d02 != []:											#列表頁有該號產品
 			d02url = d02[0].get_attribute("href")				#取圖的href
+
+
 			browser.get(d02url)									#入href取聯
 			time.sleep(random.uniform(3, 11))					#隨機等
-			d03 = (browser.find_elements_by_xpath(co3))	
-			d03WTS = d03[0].get_attribute("href")				#找WTS
+
+
+
+			d03 = (browser.find_elements_by_xpath(co3))			#找WTS
+			d04 = (browser.find_elements_by_xpath(co4))			#冇WTS找TEL
+			#print ("\n冇產e",d03)
+			#print ("\n冇夠20個",d04)
+
 			while True:
-				if d03WTS != None :		#WTS非空
-					#time.sleep(random.uniform(3, 11))			#隨機等
-					d03WTS = d03[0].get_attribute("href")
-					fp = open(DL00, "a", encoding="utf-8" )	
-					fp.writelines((d03WTS[36:47])+'\n')			#記WTS
-					fp.close()
-					print ("\n成功取得WTS聯絡資料",(d03WTS[36:47]))
+				if d03 == [] and d04 == []:								#冇WTS冇TEL走
+					print ("\n冇WTS冇TEL走")
 					break
-				else:			
-					d04 = (browser.find_elements_by_xpath(co4))	#冇WTS找TEL
+				else:
+					d03WTS = d03[0].get_attribute("href")				#找WTSURL
 					while True:
-						if d04 != []:							#TEL非空
-							#time.sleep(random.uniform(3, 11))	#隨機等
+						if d03WTS != None :		#WTS非空
+							#time.sleep(random.uniform(3, 11))			#隨機等
+							d03WTS = d03[0].get_attribute("href")
 							fp = open(DL00, "a", encoding="utf-8" )	
-							fp.writelines((d04[0].text)+'\n')	#記TEL
+							fp.writelines((d03WTS[36:47])+'\n')			#記WTS
 							fp.close()
-							print ("\n成功取得TEL聯絡資料",(d04[0].text))
+							print ("\n成功取得WTS聯絡資料",(d03WTS[36:47]))
 							break
-						else:									#冇TEL下個
-							break
-					break										#記完退
+						else:			
+							d04 = (browser.find_elements_by_xpath(co4))	#冇WTS找TEL
+							while True:
+								if d04 != []:							#TEL非空
+									#time.sleep(random.uniform(3, 11))	#隨機等
+									fp = open(DL00, "a", encoding="utf-8" )	
+									fp.writelines((d04[0].text)+'\n')	#記TEL
+									fp.close()
+									print ("\n成功取得TEL聯絡資料",(d04[0].text))
+									break
+								else:									#冇TEL下個
+									break
+							break										#記完退
+				break
+
 			browser.back()										#回列表頁
 			count += 1											#列表頁內的數+1
 		else:													#冇產品回
@@ -180,7 +200,6 @@ def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changeP
 
 
 _see88dbData()
-
 
 
 
