@@ -85,7 +85,8 @@ co2		= str('//*[@id="grid"]/div/div[1]/div[2]/div[')
 co2B	= str(']/div[*]/div[1]/div/a')
 
 #產品頁的TEL
-co3		= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[3]/div/a[1]')				#WTS
+
+co3		= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[3]/div[*]/a[*]')				#WTS
 co4		= str('//*[@id="norDetails"]/div[4]/div[1]/div/div/div[3]/div[*]/div[2]/div/div[*]/a')	#TEL
 co5		= str('//a[text()="後頁"]')								#後頁
 
@@ -121,11 +122,11 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 			d02url = d02[0].get_attribute("href")				#取圖的href
 			browser.get(d02url)									#入href取聯
 			time.sleep(random.uniform(3, 11))					#隨機等
-			d03 = (browser.find_elements_by_xpath(co3))			#找WTS
-
+			d03 = (browser.find_elements_by_xpath(co3))	
+			d03WTS = d03[0].get_attribute("href")				#找WTS
 			while True:
-				if len(d03) != 0 :								#WTS非空
-					time.sleep(random.uniform(3, 11))			#隨機等
+				if d03WTS != None :		#WTS非空
+					#time.sleep(random.uniform(3, 11))			#隨機等
 					d03WTS = d03[0].get_attribute("href")
 					fp = open(DL00, "a", encoding="utf-8" )	
 					fp.writelines((d03WTS[36:47])+'\n')			#記WTS
@@ -136,7 +137,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 					d04 = (browser.find_elements_by_xpath(co4))	#冇WTS找TEL
 					while True:
 						if d04 != []:							#TEL非空
-							time.sleep(random.uniform(3, 11))	#隨機等
+							#time.sleep(random.uniform(3, 11))	#隨機等
 							fp = open(DL00, "a", encoding="utf-8" )	
 							fp.writelines((d04[0].text)+'\n')	#記TEL
 							fp.close()
