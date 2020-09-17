@@ -92,10 +92,7 @@ co5		= str('//a[text()="後頁"]')								#後頁
 
 #瀏覽器
 options = webdriver.ChromeOptions() 										
-
 prefs   = {'profile.default_content_setting_values':{'notifications' : 2}}		#禁用瀏覽器彈窗
-
-
 options.add_experimental_option('prefs',prefs)
 options.add_argument('--headless')												#冇頭
 options.add_argument('--no-sandbox')											#冇頭
@@ -125,9 +122,9 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 			browser.get(d02url)									#入href取聯
 			time.sleep(random.uniform(3, 11))					#隨機等
 			d03 = (browser.find_elements_by_xpath(co3))			#找WTS
-			
 			while True:
-				if d03 != []:									#WTS非空
+				if d03[0].get_attribute("href") != None:		#WTSLink非空
+					time.sleep(random.uniform(3, 11))			#隨機等
 					d03WTS = d03[0].get_attribute("href")
 					fp = open(DL00, "a", encoding="utf-8" )	
 					fp.writelines((d03WTS[36:47])+'\n')			#記WTS
@@ -138,6 +135,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 					d04 = (browser.find_elements_by_xpath(co4))	#冇WTS找TEL
 					while True:
 						if d04 != []:							#TEL非空
+							time.sleep(random.uniform(3, 11))	#隨機等
 							fp = open(DL00, "a", encoding="utf-8" )	
 							fp.writelines((d04[0].text)+'\n')	#記TEL
 							fp.close()
@@ -152,8 +150,8 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 			print ("\n冇產品或不夠20個")
 			count = 21
 			break
-		#time.sleep(random.uniform(3, 11))						#隨機等
 	#列表頁內找21次END
+
 	_changePagea()
 
 
