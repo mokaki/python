@@ -1,27 +1,14 @@
 ﻿
 #蛇料88db展銷場
-#202009170522
+#202009180408
 #!/usr/bin/python3
 #!python*
 # -*- coding: utf-8 -*-
-
-import requests
-from bs4 import BeautifulSoup
 import os 
-import json
 import time
-import datetime
 import random
-from tkinter import *
-import tkinter as tk
-from functools import partial
 from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-import re  
+
 
 
 

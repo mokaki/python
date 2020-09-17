@@ -1,5 +1,5 @@
 ﻿
-#蛇料88db語言課程
+#蛇料88db會計及稅務
 #202009180408
 #!/usr/bin/python3
 #!python*
@@ -12,6 +12,7 @@ from selenium import webdriver
 
 
 
+
 BCR			= "../.exe/chromedriver"							#ChromedriverURL
 WeMSG		= "\n********!!!找不到這個網頁原素!!!********\n"		#ERROR MSG
 WeMSGEND	= "\n****************"
@@ -20,7 +21,7 @@ DL02		= ".txt"
 
 #88db網code
 URL000 = 'https://88db.com.hk/Business/'
-URL001 = 'Language-Courses/1/'							#語言課程
+URL001 = 'Accounting-Tax/1/'						#會計及稅務
 
 
 #列表頁總數
@@ -47,14 +48,10 @@ browser = webdriver.Chrome(BCR ,chrome_options=options)
 
 #初始資料
 browser.get(URL000+URL001)										#到網
-DL00 = str(DL01+'88dbDate-語言課程'+time.strftime('%Y%m')+DL02)				#文件名	88dbDate-202009.txt
+DL00 = str(DL01+'88dbDate-會計及稅務'+time.strftime('%Y%m')+DL02)				#文件名	88dbDate-202009.txt
 fp = open(DL00, "a", encoding="utf-8" )							#開/創文件
-fp.writelines('88dbDate-語言課程'+time.strftime('%H%M%S')+'\n')			#文件第一行
+fp.writelines('88dbDate-會計及稅務'+time.strftime('%H%M%S')+'\n')			#文件第一行
 fp.close()
-
-
-
-
 
 
 #找資
@@ -83,7 +80,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 							fp = open(DL00, "a", encoding="utf-8" )	
 							fp.writelines((d03WTS[36:47])+'\n')			#記WTS
 							fp.close()
-							print ("\n成功取得語言課程WTS聯絡資料",(d03WTS[36:47]))
+							print ("\n成功取得會計及稅務WTS聯絡資料",(d03WTS[36:47]))
 							break
 						else:			
 							d04 = (browser.find_elements_by_xpath(co4))	#冇WTS找TEL
@@ -93,7 +90,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 									fp = open(DL00, "a", encoding="utf-8" )	
 									fp.writelines((d04[0].text)+'\n')	#記TEL
 									fp.close()
-									print ("\n成功取得語言課程TEL聯絡資料",(d04[0].text))
+									print ("\n成功取得會計及稅務TEL聯絡資料",(d04[0].text))
 									break
 								else:									#冇TEL下個
 									break
@@ -128,7 +125,7 @@ def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changeP
 			browser.execute_script("arguments[0].click();", d05[0]) #特別點擊
 			SortBy += 20
 			SortBy2 = SortBy + 20
-			print('\n***語言課程' , SortBy , '至' , SortBy2  ,'*****************\n')
+			print('\n***會計及稅務' , SortBy , '至' , SortBy2  ,'*****************\n')
 			_see88dbData()
 	fp = open(DL00, "a", encoding="utf-8" )
 	fp.writelines('完'+time.strftime('%H%M%S')+"\n")					#文件尾行
@@ -140,7 +137,6 @@ def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changeP
 
 
 _see88dbData()
-
 
 
 
