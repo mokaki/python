@@ -64,7 +64,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 		if d02 != []:											#列表頁有該號產品
 			d02url = d02[0].get_attribute("href")				#取圖的href
 			browser.get(d02url)									#入href取聯
-			time.sleep(random.uniform(3, 11))					#隨機等
+			#time.sleep(random.uniform(3, 11))					#隨機等
 			d03 = (browser.find_elements_by_xpath(co3))			#找WTS
 			d04 = (browser.find_elements_by_xpath(co4))			#冇WTS找TEL
 			while True:
@@ -75,7 +75,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 					d03WTS = d03[0].get_attribute("href")				#找WTSURL
 					while True:
 						if d03WTS != None :		#WTS非空
-							#time.sleep(random.uniform(3, 11))			#隨機等
+							##time.sleep(random.uniform(3, 11))			#隨機等
 							d03WTS = d03[0].get_attribute("href")
 							fp = open(DL00, "a", encoding="utf-8" )	
 							fp.writelines((d03WTS[36:47])+'\n')			#記WTS
@@ -86,7 +86,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 							d04 = (browser.find_elements_by_xpath(co4))	#冇WTS找TEL
 							while True:
 								if d04 != []:							#TEL非空
-									#time.sleep(random.uniform(3, 11))	#隨機等
+									##time.sleep(random.uniform(3, 11))	#隨機等
 									fp = open(DL00, "a", encoding="utf-8" )	
 									fp.writelines((d04[0].text)+'\n')	#記TEL
 									fp.close()
@@ -115,7 +115,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 SortBy = 0
 def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changePagea
 	global SortBy
-	time.sleep(random.uniform(3, 11))								#隨機等
+	#time.sleep(random.uniform(3, 11))								#隨機等
 	d05 = (browser.find_elements_by_xpath(co5))						#後頁btn
 	if d05 == [] :	
 		print ("\n已成功取得所有頁的聯絡資料了")						#冇後頁OUT
@@ -131,12 +131,14 @@ def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changeP
 	fp.writelines('完'+time.strftime('%H%M%S')+"\n")					#文件尾行
 	fp.close()
 	print ("\nEND")
-	os.system("pause")
+	#os.system("pause")
 
 
 
 
 _see88dbData()
+
+
 
 
 

@@ -134,7 +134,7 @@ def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changeP
 	fp.writelines('完'+time.strftime('%H%M%S')+"\n")					#文件尾行
 	fp.close()
 	print ("\nEND")
-	os.system("pause")
+	#os.system("pause")
 
 
 
