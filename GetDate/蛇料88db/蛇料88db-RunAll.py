@@ -5,9 +5,9 @@
 # -*- coding: UTF-8 -*-
 
 import os 
+import time
 
-
-print ("\n開始\n",time.strftime('%H%M%S'),"\n")
+print ("\n開始-",time.strftime('%H%M%S'),"\n")
 #os.system("python ./00.py")
 os.system("python ./蛇料88db-43創業課程.py")
 os.system("python ./蛇料88db-42個人提升課程.py")
@@ -54,5 +54,5 @@ os.system("python ./蛇料88db-02會計及稅務.py")
 os.system("python ./蛇料88db-01生意頂讓.py")
 
 
-print ("\nEND\n",time.strftime('%H%M%S'),"\n")
+print ("\nEND-",time.strftime('%H%M%S'),"\n")
 os.system("pause")
