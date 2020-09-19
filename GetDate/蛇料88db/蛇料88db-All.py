@@ -1,4 +1,4 @@
-﻿
+
 #蛇料88db-All
 #202009190533
 #!/usr/bin/python3
@@ -144,6 +144,7 @@ browser = webdriver.Chrome(BCR ,chrome_options=options)
 
 #初始資料
 def _BaesData():
+	print ("\n創建初始文件")
 	global URL000
 	global ClassName000
 	global DL00
@@ -163,12 +164,13 @@ def _BaesData():
 
 #找資
 def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88dbData
+	print ("\n找88dbData,每頁2~21")
 	global ClassName000
 	global DL00
 	count = 2												#列表頁內的數 2~21
 	#列表頁內找21次
 	while (count <= 21):  											#少於21執行
-		co2000  = str(co2 + str(count) + co2B)								#正式列表頁的每產品的圖
+		co2000  = str(co2 + str(count) + co2B)						#正式列表頁的每產品的圖
 		d02 = browser.find_elements_by_xpath(co2000)
 		if d02 != []:											#列表頁有該號產品
 			d02url = d02[0].get_attribute("href")							#取圖的href
@@ -223,6 +225,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 #轉下頁至冇後頁
 SortBy = 0
 def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changePagea
+	print ("\n轉下頁")
 	global ClassName000
 	global SortBy
 	#time.sleep(random.uniform(3, 11))									#隨機等
@@ -236,7 +239,7 @@ def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changeP
 			SortBy += 20
 			SortBy2 = SortBy + 20
 			print('\n***', ClassName000 ,  SortBy , '至' , SortBy2  ,'*****************\n')
-			_BaesData()
+			_see88dbData()
 
 
 
@@ -248,6 +251,7 @@ def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changeP
 
 #轉下個類
 def _changeclass():#_changeclass#_changeclass#_changeclass#_changeclass#_changeclass
+	print ("\n轉下個類")
 	global classcount
 	global ClassName000
 	global URL000
@@ -257,12 +261,16 @@ def _changeclass():#_changeclass#_changeclass#_changeclass#_changeclass#_changec
 		fp = open(DL00, "a", encoding="utf-8" )
 		fp.writelines('完'+time.strftime('%H%M%S')+"\n")							#文件尾行
 		fp.close()
-		print ("\nEND")
+		print ("\n已成功取得全網所有頁聯絡資料=END\n")
 		os.system("pause")
 	else:	
 		URL000 = URL0+ (eval('URL'+str(classcount)))								#URL000 = URL0+URL+?
 		ClassName000 = (eval('ClassName'+str(classcount)))						#ClassName000 = ClassName+?
+		print ("\n",URL000)
+		print ("\n",ClassName000)
 		classcount - 1
+
+
 		_BaesData()
 
 
