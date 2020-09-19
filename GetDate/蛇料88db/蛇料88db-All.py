@@ -1,6 +1,6 @@
 
 #蛇料88db-All
-#202009190533
+#202009200450
 #!/usr/bin/python3
 #!python*
 # -*- coding: utf-8 -*-
@@ -144,10 +144,10 @@ browser = webdriver.Chrome(BCR ,chrome_options=options)
 
 #初始資料
 def _BaesData():
-	print ("\n創建初始文件")
 	global URL000
 	global ClassName000
 	global DL00
+	print ("\n開始獲取",ClassName000,"資料")
 	browser.get(URL000)															#到網
 	DL00 = str(DL01 + '88dbDate-'+ ClassName000 + time.strftime('%Y%m') + DL02)	#文件名	88dbDate-創業課程202009.txt
 	fp = open(DL00, "a", encoding="utf-8" )										#開/創文件
@@ -164,10 +164,10 @@ def _BaesData():
 
 #找資
 def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88dbData
-	print ("\n找88dbData,每頁2~21")
 	global ClassName000
 	global DL00
 	count = 2												#列表頁內的數 2~21
+	print ("\n正在取得",ClassName000,"資料,每頁2~21")
 	#列表頁內找21次
 	while (count <= 21):  											#少於21執行
 		co2000  = str(co2 + str(count) + co2B)						#正式列表頁的每產品的圖
@@ -269,8 +269,6 @@ def _changeclass():#_changeclass#_changeclass#_changeclass#_changeclass#_changec
 		print ("\n",URL000)
 		print ("\n",ClassName000)
 		classcount - 1
-
-
 		_BaesData()
 
 
