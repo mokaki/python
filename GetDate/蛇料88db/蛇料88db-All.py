@@ -252,14 +252,16 @@ def _changeclass():#_changeclass#_changeclass#_changeclass#_changeclass#_changec
 	global ClassName000
 	global URL000
 	global DL00
+
 	if classcount == 1:											#倒數取class = 1 = 停
 		fp = open(DL00, "a", encoding="utf-8" )
 		fp.writelines('完'+time.strftime('%H%M%S')+"\n")							#文件尾行
 		fp.close()
 		print ("\nEND")
+		os.system("pause")
 	else:	
-		URL000 = URL0+'URL'+str(classcount)								#URL000 = URL0+URL+?
-		ClassName000 = 'ClassName'+str(classcount)							#ClassName000 = ClassName+?
+		URL000 = URL0+ (eval('URL'+str(classcount)))								#URL000 = URL0+URL+?
+		ClassName000 = (eval('ClassName'+str(classcount)))						#ClassName000 = ClassName+?
 		classcount - 1
 		_BaesData()
 
@@ -282,9 +284,6 @@ def _changeclass():#_changeclass#_changeclass#_changeclass#_changeclass#_changec
 
 
 _BaesData()
-
-
-
 
 
 
