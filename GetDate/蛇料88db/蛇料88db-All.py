@@ -1,6 +1,6 @@
 
 #蛇料88db-All
-#202009200450
+#20200920627
 #!/usr/bin/python3
 #!python*
 # -*- coding: utf-8 -*-
@@ -11,11 +11,16 @@ import random
 from selenium import webdriver
 
 
-BCR		= "../.exe/chromedriver"				#ChromedriverURL
-WeMSG		= "\n********!!!找不到這個網頁原素!!!********\n"		#ERROR MSG
+BCR		= "../.exe/chromedriver"							#ChromedriverURL
+WeMSG		= "\n********!!!找不到這個網頁原素!!!********\n"	#ERROR MSG
 WeMSGEND	= "\n****************"
 DL01		= "Data/"
 DL02		= ".txt"
+URL000 = URL0+URL43 										#初始URL
+ClassName000 = ClassName43 									#初始ClassName
+classcount = 43 											#初始class號
+DL00 = 0 													#初始文件名
+
 
 #88db網code
 URL0 = 'https://88db.com.hk/Business/'
@@ -63,6 +68,7 @@ URL41 = 'Professional-Courses/1/'					#專業課程
 URL42 = 'Self-Improve-Courses/1/'					#個人提升課程
 URL43 = 'Startup-Courses/1/'						#創業課程
 
+
 ClassName1  = '生意頂讓'
 ClassName2  = '會計及稅務'
 ClassName3  = '裝修工程'
@@ -107,15 +113,6 @@ ClassName41 = '專業課程'
 ClassName42 = '個人提升課程'
 ClassName43 = '創業課程'
 
-URL000 = URL0+URL43 							#初始URL
-ClassName000 = ClassName43 						#初始ClassName
-classcount = 43 							#初始class號
-DL00 = 0 								#初始文件名
-
-
-
-
-
 
 #列表頁總數
 co1	   = str('//*[@id="listing-filter-1"]/div[3]/div[2]/span[1]') 
@@ -142,6 +139,11 @@ browser = webdriver.Chrome(BCR ,chrome_options=options)
 
 
 
+
+
+
+
+
 #初始資料
 def _BaesData():
 	global URL000
@@ -154,6 +156,7 @@ def _BaesData():
 	fp.writelines('88dbDate-' + ClassName000 + time.strftime('%H%M%S') +'\n')	#文件第一行
 	fp.close()
 	_see88dbData()
+
 
 
 
@@ -222,6 +225,9 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 
 
 
+
+
+
 #轉下頁至冇後頁
 SortBy = 0
 def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changePagea
@@ -249,6 +255,7 @@ def _changePagea():#_changePagea#_changePagea#_changePagea#_changePagea#_changeP
 
 
 
+
 #轉下個類
 def _changeclass():#_changeclass#_changeclass#_changeclass#_changeclass#_changeclass
 	print ("\n轉下個類")
@@ -258,26 +265,17 @@ def _changeclass():#_changeclass#_changeclass#_changeclass#_changeclass#_changec
 	global DL00
 
 	if classcount == 1:											#倒數取class = 1 = 停
-		fp = open(DL00, "a", encoding="utf-8" )
-		fp.writelines('完'+time.strftime('%H%M%S')+"\n")			#文件尾行
-		fp.close()
 		print ("\n已成功取得全網所有頁聯絡資料=END\n")
 		os.system("pause")
-	else:	
+	else:
+		fp = open(DL00, "a", encoding="utf-8" )
+		fp.writelines('完'+time.strftime('%H%M%S')+"\n")			#文件尾行
+		fp.close()	
 		classcount -= 1
 		URL000 = URL0+ (eval('URL'+str(classcount)))			#URL000 = URL0+(eval內是合成的變量名稱) = URL0+URL1
 		ClassName000 = (eval('ClassName'+str(classcount)))		#ClassName000 = (eval內是合成的變量名稱) = ClassName1
 		print ("\n",ClassName000,URL000)
 		_BaesData()
-
-
-
-
-
-
-
-
-
 
 
 
