@@ -1,6 +1,6 @@
 
 #蛇料88db-All
-#202009200611
+#202009200450
 #!/usr/bin/python3
 #!python*
 # -*- coding: utf-8 -*-
@@ -147,7 +147,7 @@ def _BaesData():
 	global URL000
 	global ClassName000
 	global DL00
-	print ("\n開始獲取",ClassName000,"資料")
+	print ("\n潛入88db偷窺",ClassName000,"資料")
 	browser.get(URL000)															#到網
 	DL00 = str(DL01 + '88dbDate-'+ ClassName000 + time.strftime('%Y%m') + DL02)	#文件名	88dbDate-創業課程202009.txt
 	fp = open(DL00, "a", encoding="utf-8" )										#開/創文件
@@ -167,7 +167,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 	global ClassName000
 	global DL00
 	count = 2												#列表頁內的數 2~21
-	print ("\n正在取得",ClassName000,"資料,每頁2~21")
+	print ("\n正在偷窺",ClassName000,"...")
 	#列表頁內找21次
 	while (count <= 21):  											#少於21執行
 		co2000  = str(co2 + str(count) + co2B)						#正式列表頁的每產品的圖
@@ -180,7 +180,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 			d04 = (browser.find_elements_by_xpath(co4))						#冇WTS找TEL
 			while True:
 				if d03 == [] and d04 == []:							#冇WTS冇TEL走
-					print ("\n冇WTS冇TEL走")
+					print ("\n被警察發現,逃走中...")
 					break
 				else:
 					d03WTS = d03[0].get_attribute("href")					#找WTSURL
@@ -191,7 +191,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 							fp = open(DL00, "a", encoding="utf-8" )	
 							fp.writelines((d03WTS[36:47])+'\n')			#記WTS
 							fp.close()
-							print ("\n成功取得",ClassName000,"WTS聯絡資料",(d03WTS[36:47]))
+							print ("\n成功取得",ClassName000,"WTS=",(d03WTS[36:47]))
 							break
 						else:			
 							d04 = (browser.find_elements_by_xpath(co4))		#冇WTS找TEL
@@ -201,7 +201,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 									fp = open(DL00, "a", encoding="utf-8" )	
 									fp.writelines((d04[0].text)+'\n')	#記TEL
 									fp.close()
-									print ("\n成功取得",ClassName000,"TEL聯絡資料",(d04[0].text))
+									print ("\n成功取得",ClassName000,"TEL=",(d04[0].text))
 									break
 								else:						#冇TEL下個
 									break
