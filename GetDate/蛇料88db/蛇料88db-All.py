@@ -1,6 +1,6 @@
 
 #蛇料88db-All
-#202009200450
+#202009200611
 #!/usr/bin/python3
 #!python*
 # -*- coding: utf-8 -*-
@@ -109,7 +109,7 @@ ClassName43 = '創業課程'
 
 URL000 = URL0+URL43 							#初始URL
 ClassName000 = ClassName43 						#初始ClassName
-classcount = 42 							#初始class號
+classcount = 43 							#初始class號
 DL00 = 0 								#初始文件名
 
 
@@ -264,10 +264,10 @@ def _changeclass():#_changeclass#_changeclass#_changeclass#_changeclass#_changec
 		print ("\n已成功取得全網所有頁聯絡資料=END\n")
 		os.system("pause")
 	else:	
+		classcount -= 1
 		URL000 = URL0+ (eval('URL'+str(classcount)))			#URL000 = URL0+(eval內是合成的變量名稱) = URL0+URL1
 		ClassName000 = (eval('ClassName'+str(classcount)))		#ClassName000 = (eval內是合成的變量名稱) = ClassName1
-		print ("\n"ClassName000,URL000)
-		classcount - 1
+		print ("\n",ClassName000,URL000)
 		_BaesData()
 
 
