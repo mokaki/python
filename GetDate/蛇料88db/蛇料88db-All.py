@@ -266,6 +266,7 @@ def _changeclass():#_changeclass#_changeclass#_changeclass#_changeclass#_changec
 	else:	
 		URL000 = URL0+ (eval('URL'+str(classcount)))			#URL000 = URL0+(eval內是合成的變量名稱) = URL0+URL1
 		ClassName000 = (eval('ClassName'+str(classcount)))		#ClassName000 = (eval內是合成的變量名稱) = ClassName1
+		print ("\n"ClassName000,URL000)
 		classcount - 1
 		_BaesData()
 
