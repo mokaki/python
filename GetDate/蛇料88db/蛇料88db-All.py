@@ -259,15 +259,13 @@ def _changeclass():#_changeclass#_changeclass#_changeclass#_changeclass#_changec
 
 	if classcount == 1:											#倒數取class = 1 = 停
 		fp = open(DL00, "a", encoding="utf-8" )
-		fp.writelines('完'+time.strftime('%H%M%S')+"\n")							#文件尾行
+		fp.writelines('完'+time.strftime('%H%M%S')+"\n")			#文件尾行
 		fp.close()
 		print ("\n已成功取得全網所有頁聯絡資料=END\n")
 		os.system("pause")
 	else:	
-		URL000 = URL0+ (eval('URL'+str(classcount)))								#URL000 = URL0+URL+?
-		ClassName000 = (eval('ClassName'+str(classcount)))						#ClassName000 = ClassName+?
-		print ("\n",URL000)
-		print ("\n",ClassName000)
+		URL000 = URL0+ (eval('URL'+str(classcount)))			#URL000 = URL0+(eval內是合成的變量名稱) = URL0+URL1
+		ClassName000 = (eval('ClassName'+str(classcount)))		#ClassName000 = (eval內是合成的變量名稱) = ClassName1
 		classcount - 1
 		_BaesData()
 
