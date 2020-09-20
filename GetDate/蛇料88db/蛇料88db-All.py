@@ -1,6 +1,6 @@
 ﻿
 #蛇料88db-All
-#20200920627
+#202009210325
 #!/usr/bin/python3
 #!python*
 # -*- coding: utf-8 -*-
