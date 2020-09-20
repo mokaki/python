@@ -1,4 +1,4 @@
-
+﻿
 #蛇料88db-All
 #20200920627
 #!/usr/bin/python3
@@ -9,6 +9,10 @@ import os
 import time
 import random
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import shutil												#去除txt文件中重复的行数
+
+
 
 
 BCR		= "../.exe/chromedriver"							#ChromedriverURL
@@ -16,10 +20,6 @@ WeMSG		= "\n********!!!找不到這個網頁原素!!!********\n"	#ERROR MSG
 WeMSGEND	= "\n****************"
 DL01		= "Data/"
 DL02		= ".txt"
-URL000 = URL0+URL43 										#初始URL
-ClassName000 = ClassName43 									#初始ClassName
-classcount = 43 											#初始class號
-DL00 = 0 													#初始文件名
 
 
 #88db網code
@@ -114,6 +114,13 @@ ClassName42 = '個人提升課程'
 ClassName43 = '創業課程'
 
 
+URL000 = URL0+URL43 										#初始URL
+ClassName000 = ClassName43 									#初始ClassName
+classcount = 43 											#初始class號
+DL00 = 0 													#初始文件名
+
+
+
 #列表頁總數
 co1	   = str('//*[@id="listing-filter-1"]/div[3]/div[2]/span[1]') 
 #列表頁的每產品的圖的href
@@ -135,8 +142,6 @@ options.add_argument("--log-level=3")							#不提示log
 browser = webdriver.Chrome(BCR ,chrome_options=options)
 #browser.set_window_size(640, 360)					
 #瀏覽器END
-
-
 
 
 
@@ -215,7 +220,7 @@ def _see88dbData():#_see88dbData#_see88dbData#_see88dbData#_see88dbData#_see88db
 		else:												#冇產品回
 			print ("\n冇產品或不夠20個")
 			count = 21
-			break
+			_changePagea()
 	#列表頁內找21次END
 	_changePagea()
 
@@ -270,7 +275,18 @@ def _changeclass():#_changeclass#_changeclass#_changeclass#_changeclass#_changec
 	else:
 		fp = open(DL00, "a", encoding="utf-8" )
 		fp.writelines('完'+time.strftime('%H%M%S')+"\n")			#文件尾行
-		fp.close()	
+		fp.close()
+		readDir = DL00
+		writeDir = DL00 + 'A'
+		lines_seen = set()
+		outfile=open(writeDir,"w+",encoding='utf-8-sig')
+		f = open(readDir,"r",encoding='utf-8-sig').readlines()
+		for line in f:
+			if line not in lines_seen:
+				outfile.write(line)
+				lines_seen.add(line)
+		outfile.close()
+		print('已刪除重複')
 		classcount -= 1
 		URL000 = URL0+ (eval('URL'+str(classcount)))			#URL000 = URL0+(eval內是合成的變量名稱) = URL0+URL1
 		ClassName000 = (eval('ClassName'+str(classcount)))		#ClassName000 = (eval內是合成的變量名稱) = ClassName1
