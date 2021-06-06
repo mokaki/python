@@ -20,6 +20,9 @@ Download Windows installer (64-bit)
 
 成功安裝 執行測試
 
+
+[pip list](https://raw.githubusercontent.com/mokaki/python/master/piplist.md)
+
 [1SelePage.py](https://raw.githubusercontent.com/mokaki/python/master/othen/1SelePage.py)
 
 [自動抄波OK.py](https://raw.githubusercontent.com/mokaki/python/master/%E8%87%AA%E5%8B%95%E6%8A%84%E6%B3%A2/%E8%87%AA%E5%8B%95%E6%8A%84%E6%B3%A2OK.py)
