@@ -4,7 +4,7 @@
 
 ctrl f
 
-Download Windows embeddable package (64-bit)
+Download Windows installer (64-bit)
 
 
 
