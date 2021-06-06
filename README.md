@@ -20,6 +20,11 @@ Download Windows installer (64-bit)
 
 成功安裝 執行測試
 
+win search
+
+cmd
+
+python -m pip install --user --upgrade pip
 
 [pip list](https://raw.githubusercontent.com/mokaki/python/master/piplist.md)
 
