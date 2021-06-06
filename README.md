@@ -26,7 +26,7 @@ cmd
 
 python -m pip install --user --upgrade pip
 
-[pip list](https://raw.githubusercontent.com/mokaki/python/master/piplist.md)
+[pip list](https://github.com/mokaki/python/blob/master/piplist.md)
 
 [1SelePage.py](https://raw.githubusercontent.com/mokaki/python/master/othen/1SelePage.py)
 
