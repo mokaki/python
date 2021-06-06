@@ -3,6 +3,9 @@ win search
 
 cmd
 
+python -m pip install --user --upgrade pip
+
+---
 
 pip install requests
 
