@@ -18,17 +18,16 @@ https://t.codebug.vip/questions-2848742.htm
 #!/usr/bin/env python
 from threading import *
 import time
-import sys
 import os
+from PyClassicRound import classic_round
 
 
-for i in range(10):
-	print("\r离程序退出还剩%s秒" % (9-i), end="")
+
+for i in range(600):
+	print(round(((i)/60),1),'分鐘',"\r离程序退出还剩%s秒" % (1+i), end="")
 	time.sleep(1)
 
 
-
-handleClient1()
 
 print('按鍵退出程式')
 os.system("pause")
