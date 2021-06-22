@@ -22,16 +22,9 @@ import sys
 import os
 
 
-def handleClient1():
-	for i in range(10,0,-1):
-		sys.stdout.write(str(i)+' \r')
-		sys.stdout.flush()
-		time.sleep(1)
-
-
- 
-
-
+for i in range(10):
+	print("\r离程序退出还剩%s秒" % (9-i), end="")
+	time.sleep(1)
 
 
 
