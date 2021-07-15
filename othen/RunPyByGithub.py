@@ -1,16 +1,28 @@
 ﻿
+﻿
 '''
 py3
 RunPyByGithub
-ATW202107140008
+ATW202107151846
 mokaki
 pip install 
 https://stackoverflow.com/questions/54963794/read-python-code-from-github-and-execute-locally
 '''
 # -*- coding: UTF-8 -*-
+
+
+# RunPyByGithub
 import urllib.request
-code = 'https://raw.githubusercontent.com/mokaki/AutoWeb/master/%E8%87%AA%E5%8B%95%E6%90%B5%E5%AE%A2.py'
+code = 'https://raw.githubusercontent.com/mokaki/AutoWeb/master/.py/_1AutoWebProfile.py'
 response = urllib.request.urlopen(code)
 data = response.read()
-print ('data\n'+ str(data) +'\n')
-exec(data)
+
+# send vlo
+import sys
+sys.path.append(data)
+import _1AutoWebProfile
+qweq = _1AutoWebProfile.LoginATW('您們')
+#
+
+
+
